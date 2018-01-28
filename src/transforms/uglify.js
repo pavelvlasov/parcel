@@ -4,16 +4,13 @@ module.exports = async function(asset) {
   await asset.parseIfNeeded();
 
   // Convert AST into JS
-  let code = asset.generate().js;
+  let code = (await asset.generate()).js;
 
   let customConfig = await asset.getConfig(['.uglifyrc']);
   let options = {
     warnings: true,
     mangle: {
       toplevel: true
-    },
-    compress: {
-      drop_console: true
     }
   };
 
