@@ -123,6 +123,10 @@ class Bundler extends EventEmitter {
     this.bundleLoaders[type] = path;
   }
 
+  setResolver(resolver) {
+    this.resolver = resolver;
+  }
+
   async loadPlugins() {
     let pkg = await config.load(this.mainFile, ['package.json']);
     if (!pkg) {
@@ -565,3 +569,4 @@ class Bundler extends EventEmitter {
 module.exports = Bundler;
 Bundler.Asset = require('./Asset');
 Bundler.Packager = require('./packagers/Packager');
+Bundler.Resolver = require('./Resolver');
